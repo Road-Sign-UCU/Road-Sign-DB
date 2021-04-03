@@ -7,3 +7,5 @@
 def fetch_somedb(self):
     # download & move this database into the APPROPRIATE FOLDER. Like Databases/from-kaggle
 ```
+
+<hr\>
