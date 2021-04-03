@@ -4,9 +4,8 @@
 
 <hr/>
 
-<!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary>Інформація</summary>
   <ol>
     <li><a href="#про-проект">Про проект</a></li>
     <li><a href="#основні-складові">Основні складові</a></li>
@@ -18,7 +17,6 @@
 
 
 
-<!-- ABOUT THE PROJECT -->
 ## Про проект
 
 Опис проекту.
