@@ -15,9 +15,9 @@ def fetch_somedb(self):
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Про проект</a>
+      <a href="#про-проект">Про проект</a>
       <ul>
-        <li><a href="#built-with">Основні складові</a></li>
+        <li><a href="#основні-складові">Основні складові</a></li>
       </ul>
     </li>
     <li><a href="#getting-started">Початок роботи</a></li>
