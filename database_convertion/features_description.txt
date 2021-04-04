@@ -1,0 +1,28 @@
+image:
+must a 128x128 image path string.
+
+occlusions: 
+VISIBLE -- is perfectly visible
+SIDE_ROAD -- is positioned sideways/on a side road
+BLURRED -- is blurred
+OCCLUDED -- is occluded by an another object
+
+sign_class:
+MANDATORY -- is mandatory
+UNREADABLE -- is unreadable (then sign_type is URDBL)
+PROHIBITORY -- a prohibitory sign
+WARNING -- a warning sign
+INFORMATION -- an infromation sign
+OTHER -- other class
+
+sign_type:
+120_SIGN, 110_SIGN, 100_SIGN, 90_SIGN, 80_SIGN, 70_SIGN, 60_SIGN, 50_SIGN, 40_SIGN, 30_SIGN -- speed limit signs
+URDBL -- unreadable sign
+PASS_RIGHT_SIDE, PASS_EITHER_SIDE, PASS_LEFT_SIDE
+PEDESTRIAN_CROSSING
+GIVE_WAY
+STOP
+PRIORITY_ROAD
+NO_STOPPING_NO_STANDING
+NO_PARKING
+OTHER -- other type
