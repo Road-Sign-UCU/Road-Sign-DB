@@ -2,3 +2,7 @@
 __pycache__
 venv
 .vscode
+Databases
+APIs
+images
+*.swp
