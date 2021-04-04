@@ -1,6 +1,12 @@
 image:
 must a 128x128 image path string.
 
+initial_size_x:
+must be an integer
+
+initial_size_y:
+must be an integer
+
 occlusions: 
 VISIBLE -- is perfectly visible
 SIDE_ROAD -- is positioned sideways/on a side road

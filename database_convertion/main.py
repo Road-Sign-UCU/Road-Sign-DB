@@ -22,9 +22,12 @@ class Database:
         """
         # create the dataset file if it doesn't exist
         self.dataset_filename = os.path.join(MAIN_PATH, dataset_filename)
+        self.images_dirname = os.path.join(MAIN_PATH, images_dirname)
+        self.__create_dirs_and_files()
+
+    def __create_dirs_and_files(self):
         if not os.path.exists(self.dataset_filename):
             open(self.dataset_filename, 'a').close()
-        self.images_dirname = os.path.join(MAIN_PATH, images_dirname)
         if not os.path.exists(self.images_dirname):
             os.mkdir(self.images_dirname)
 

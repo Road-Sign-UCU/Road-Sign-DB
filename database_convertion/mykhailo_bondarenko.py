@@ -12,6 +12,7 @@ class SwedishSignsLinkopingsUniversitet:
     Linkopings Universitet website.
     """
     website_prefix = "https://www.cvl.isy.liu.se/research/trafficSigns/swedishSignsSummer/"
+    image_prefix = "SwedishSignsLinkopingsUniversitet"
 
     def __init__(self, app_dataset_filename, images_dirname, databases_prefix):
         """
@@ -24,6 +25,7 @@ class SwedishSignsLinkopingsUniversitet:
             databases_prefix, 'SwedishSignsLinkopingsUniversitet'
         )
         self._at_mydir = lambda p: os.path.join(self.directory_name, p)
+        self._free_img_num = 0
 
     def create_dirs(self):
         """
@@ -53,14 +55,22 @@ class SwedishSignsLinkopingsUniversitet:
             self._database_zip_path, self.directory_name
         )
 
+    def __generate_new_image_name(self, image_name):
+        self._free_img_num += 1
+        return (
+            self.image_prefix +
+            f'{self._free_img_num:8}'.replace(' ', '0') +
+            '.' + image_name.split('.')[-1]
+        )
+
     def convert_and_add(self):
         """
         Use the downloaded dataset and convert it to append
         to the summary dataset csv.
         """
-        # if DEBUG:
-        #     return
-        self.__unzip_files()  # NOTE
+        dataset_f = open(self.app_dataset_filename, 'a')
+        if not DEBUG:
+            self.__unzip_files()
         with open(self._annotations_path, 'r') as f:
             _fix_line_lamb = lambda line: line.strip('\n').replace(' ', '')
             database_lines = [
@@ -80,13 +90,24 @@ class SwedishSignsLinkopingsUniversitet:
                         y1, x1, y2, x2 = map(lambda x: round(float(x)), sign[1:5])
                         x1, x2 = sorted((x1, x2))
                         y1, y2 = sorted((y1, y2))
-                        img_cropped = img[x1:x2, y1:y2]
-                        image_name_new = os.path.join(self.images_dirname, 
-                            random_filename(
-                                extension=image_name.split('.')[-1]
+
+                        image_name_new = self.__generate_new_image_name(image_name)
+                        image_path_new = os.path.join(self.images_dirname, image_name_new)
+                        if not os.path.exists(image_path_new):
+                            img_conv = img[x1:x2, y1:y2]
+                            img_conv = cv2.resize(
+                                img_conv, (128, 128), interpolation=cv2.INTER_AREA
                             )
-                        )
-                        cv2.imwrite(image_name_new, img_cropped)
+                            cv2.imwrite(image_path_new, img_conv)
+
+                        initial_size_x, initial_size_y = x2 - x1, y2 - y1
                         image_visibility = sign[0]
                         image_class = sign[5]
                         image_type = sign[6]
+
+                        # TODO: add pandas write
+                        dataset_f.write(','.join((
+                            image_name_new,
+                            str(initial_size_x), str(initial_size_y),
+                            image_visibility, image_class, image_type
+                        )) + '\n')
