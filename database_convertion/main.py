@@ -45,7 +45,6 @@ class Database:
         university = SwedishSignsLinkopingsUniversitet(
             self.dataset_filename, self.images_dirname, DATABASES_PREFIX
         )
-        university.create_dirs()
         university.download_files()
         university.convert_and_add()
 
