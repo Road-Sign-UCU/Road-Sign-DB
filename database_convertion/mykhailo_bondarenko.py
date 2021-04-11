@@ -95,3 +95,19 @@ class SwedishSignsLinkopingsUniversitet(BaseDataset):
                             str(initial_size_x), str(initial_size_y),
                             image_visibility, image_class, image_type
                         )) + '\n')
+
+
+if __name__ == "__main__":
+    MAIN_PATH = os.path.dirname(os.path.realpath(__file__))
+    dataset_filename = os.path.join(MAIN_PATH, 'DATASET.csv')
+    images_dirname = os.path.join(MAIN_PATH, 'images')
+    DATABASES_PREFIX = os.path.join(MAIN_PATH, "Databases")
+    # create the nessesary directories
+    for directory in [dataset_filename, images_dirname, DATABASES_PREFIX]:
+        if not os.path.exists(directory):
+            os.mkdir(directory)
+    university = SwedishSignsLinkopingsUniversitet(
+        dataset_filename, images_dirname, DATABASES_PREFIX
+    )
+    university.download_files()
+    university.convert_and_add()
