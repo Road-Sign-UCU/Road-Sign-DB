@@ -11,8 +11,9 @@ def download_file(url, download_to, verify=True):
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     with requests.get(url, stream=True, verify=verify) as r:
         with open(download_to, 'wb') as f:
-            f.write(r.content)
-            # shutil.copyfileobj(r.raw, f)
+            # f.write(r.content)
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
 
 
 def unzip_file(zip_file, extract_to_dir):
