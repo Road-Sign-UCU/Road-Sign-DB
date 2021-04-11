@@ -1,6 +1,7 @@
 import os
 
 from cv2 import cv2
+from PIL import Image
 
 from base_dataset import BaseDataset
 from file_operation import download_file, unzip_file, random_filename
