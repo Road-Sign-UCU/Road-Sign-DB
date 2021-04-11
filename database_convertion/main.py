@@ -2,7 +2,6 @@ import os
 
 from file_operation import download_file, unzip_file
 from mykhailo_bondarenko import SwedishSignsLinkopingsUniversitet
-from bmykhaylivvv import GermanTrafficSigns
 
 MAIN_PATH = os.path.dirname(os.path.realpath(__file__))
 DATABASES_PREFIX = os.path.join(MAIN_PATH, "Databases")
@@ -13,12 +12,10 @@ for directory in [DATABASES_PREFIX, APIS_PREFIX]:
     if not os.path.exists(directory):
         os.mkdir(directory)
 
-
 class Database:
     """
     A class to download & convert all te datasets.
     """
-
     def __init__(self, dataset_filename='DATASET.csv', images_dirname='images'):
         """
         Create the working directories and the dataset file.
@@ -53,4 +50,5 @@ class Database:
 
 
 if __name__ == "__main__":
-    #     Database().fetch_all()
+    Database().fetch_all()
+    
