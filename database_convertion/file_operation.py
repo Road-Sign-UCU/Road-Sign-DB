@@ -1,5 +1,4 @@
 import os
-import shutil
 import random
 import urllib3
 import zipfile
@@ -12,7 +11,8 @@ def download_file(url, download_to, verify=True):
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     with requests.get(url, stream=True, verify=verify) as r:
         with open(download_to, 'wb') as f:
-            shutil.copyfileobj(r.raw, f)
+            f.write(r.content)
+            # shutil.copyfileobj(r.raw, f)
 
 
 def unzip_file(zip_file, extract_to_dir):
