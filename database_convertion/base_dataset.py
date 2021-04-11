@@ -22,6 +22,7 @@ class BaseDataset(ABC):
         This property is to be set to the prefix of an image.
         If not set (recommended), returns download_folder_name
         """
+        return self.download_folder_name
 
     def __init__(self, app_dataset_filename, images_dirname, databases_prefix):
         """
