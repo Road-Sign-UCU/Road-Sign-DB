@@ -56,7 +56,7 @@ class BaseDataset(ABC):
         """
         self._free_img_num += 1
         return os.path.join(
-            self.images_dirname
+            self.images_dirname,
             (
                 self.image_file_prefix +
                 f'{self._free_img_num:8}'.replace(' ', '0') +
