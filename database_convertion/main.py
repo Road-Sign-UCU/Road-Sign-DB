@@ -2,6 +2,7 @@ import os
 
 from file_operation import download_file, unzip_file
 from mykhailo_bondarenko import SwedishSignsLinkopingsUniversitet
+from bmykhaylivvv import GermanTrafficSigns
 
 MAIN_PATH = os.path.dirname(os.path.realpath(__file__))
 DATABASES_PREFIX = os.path.join(MAIN_PATH, "Databases")
@@ -49,5 +50,20 @@ class Database:
         university.convert_and_add()
 
 
+# if __name__ == "__main__":
+# #     Database().fetch_all()
+
+
 if __name__ == "__main__":
-    Database().fetch_all()
+    MAIN_PATH = os.path.dirname(os.path.realpath(__file__))
+    dataset_filename = os.path.join(MAIN_PATH, 'DATASET.csv')
+    images_dirname = os.path.join(MAIN_PATH, 'images')
+    DATABASES_PREFIX = os.path.join(MAIN_PATH, "Databases")
+    # create the nessesary directories
+    for directory in [dataset_filename, images_dirname, DATABASES_PREFIX]:
+        if not os.path.exists(directory):
+            os.mkdir(directory)
+    test = GermanTrafficSigns(dataset_filename, images_dirname, DATABASES_PREFIX)
+    test.download_files()
+    test.convert_and_add()
+    # download_file('https://github.com/Road-Sign-UCU/Road-Sign-LFS/raw/german_db/GermanRoadSignsDB.zip', './some.zip')

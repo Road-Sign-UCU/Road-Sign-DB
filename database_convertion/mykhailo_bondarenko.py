@@ -95,3 +95,5 @@ class SwedishSignsLinkopingsUniversitet(BaseDataset):
                             str(initial_size_x), str(initial_size_y),
                             image_visibility, image_class, image_type
                         )) + '\n')
+
+
