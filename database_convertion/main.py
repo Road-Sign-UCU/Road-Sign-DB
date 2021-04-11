@@ -51,4 +51,3 @@ class Database:
 
 if __name__ == "__main__":
     Database().fetch_all()
-    

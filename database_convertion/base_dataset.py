@@ -85,7 +85,6 @@ class BaseDataset(ABC):
             download_file(smth_url, self._smth_path)
             # you may also unpack the ZIP files here...
         """
-        pass
 
     @abstractmethod
     def convert_and_add(self):
@@ -107,4 +106,3 @@ class BaseDataset(ABC):
         WHEN writing to the CSV, obtain the image name using the following:
         os.path.basename(image_path_new)
         """
-        pass
