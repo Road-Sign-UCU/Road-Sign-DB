@@ -4,10 +4,7 @@ import os
 
 class BaseDataset(ABC):
 
-    @abstractmethod
-    def website_prefix(self) -> str:
-        pass
-
+    @property
     @abstractmethod
     def image_prefix(self) -> str:
         pass
