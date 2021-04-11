@@ -102,4 +102,7 @@ class BaseDataset(ABC):
                 img_conv, (128, 128), interpolation=cv2.INTER_AREA
             )
             cv2.imwrite(image_path_new, img_conv)
+
+        WHEN writing to the CSV, obtain the image name using the following:
+        os.path.basename(image_path_new)
         """
