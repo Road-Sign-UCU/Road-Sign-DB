@@ -2,37 +2,24 @@ import os
 
 from cv2 import cv2
 
+from base_dataset import BaseDataset
 from file_operation import download_file, unzip_file, random_filename
 
 DEBUG = True  # NOTE
 
-class SwedishSignsLinkopingsUniversitet:
+class SwedishSignsLinkopingsUniversitet(BaseDataset):
     """
     This class downloads & convdrts the datase from the
     Linkopings Universitet website.
     """
     website_prefix = "https://www.cvl.isy.liu.se/research/trafficSigns/swedishSignsSummer/"
-    image_prefix = "SwedishSignsLinkopingsUniversitet"
+    download_folder_name = "SwedishSignsLinkopingsUniversitet"
 
     def __init__(self, app_dataset_filename, images_dirname, databases_prefix):
         """
         Initialise the class working directory.
-        app_dataset_filename -- dataset csv path to append to
         """
-        self.app_dataset_filename = app_dataset_filename
-        self.images_dirname = images_dirname
-        self.directory_name = os.path.join(
-            databases_prefix, 'SwedishSignsLinkopingsUniversitet'
-        )
-        self._at_mydir = lambda p: os.path.join(self.directory_name, p)
-        self._free_img_num = 0
-
-    def create_dirs(self):
-        """
-        Create the nessesary directories.
-        """
-        if not os.path.exists(self.directory_name):
-            os.mkdir(self.directory_name)
+        super().__init__(app_dataset_filename, images_dirname, databases_prefix)
 
     def download_files(self):
         """
@@ -44,23 +31,21 @@ class SwedishSignsLinkopingsUniversitet:
         if not os.path.exists(self._annotations_path):
             download_file(annotations_url, self._annotations_path, verify=False)
 
+        zips_downloaded = False
+
         database_url = self.website_prefix + "Set1/Set1Part0.zip"
         database_filename = database_url.split("/")[-1]
         self._database_zip_path = self._at_mydir(database_filename)
         if not os.path.exists(self._database_zip_path):
             download_file(database_url, self._database_zip_path, verify=False)
+            zips_downloaded = True
+        
+        if zips_downloaded:
+            self.__unzip_files()
 
     def __unzip_files(self):
         unzip_file(
             self._database_zip_path, self.directory_name
-        )
-
-    def __generate_new_image_name(self, image_name):
-        self._free_img_num += 1
-        return (
-            self.image_prefix +
-            f'{self._free_img_num:8}'.replace(' ', '0') +
-            '.' + image_name.split('.')[-1]
         )
 
     def convert_and_add(self):
@@ -91,8 +76,7 @@ class SwedishSignsLinkopingsUniversitet:
                         x1, x2 = sorted((x1, x2))
                         y1, y2 = sorted((y1, y2))
 
-                        image_name_new = self.__generate_new_image_name(image_name)
-                        image_path_new = os.path.join(self.images_dirname, image_name_new)
+                        image_path_new = self.generate_new_image_file_path(image_name)
                         if not os.path.exists(image_path_new):
                             img_conv = img[x1:x2, y1:y2]
                             img_conv = cv2.resize(
@@ -107,7 +91,7 @@ class SwedishSignsLinkopingsUniversitet:
 
                         # TODO: add pandas write
                         dataset_f.write(','.join((
-                            image_name_new,
+                            os.path.basename(image_path_new),
                             str(initial_size_x), str(initial_size_y),
                             image_visibility, image_class, image_type
                         )) + '\n')
