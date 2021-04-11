@@ -1,1 +1,1 @@
-*.zip filter=lfs diff=lfs merge=lfs -text
+RoadSignDetectionKaggle.zip filter=lfs diff=lfs merge=lfs -text
