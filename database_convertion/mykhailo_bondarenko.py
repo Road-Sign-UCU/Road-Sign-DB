@@ -106,4 +106,8 @@ if __name__ == "__main__":
     for directory in [dataset_filename, images_dirname, DATABASES_PREFIX]:
         if not os.path.exists(directory):
             os.mkdir(directory)
-    SwedishSignsLinkopingsUniversitet(dataset_filename, images_dirname, DATABASES_PREFIX)
+    university = SwedishSignsLinkopingsUniversitet(
+        dataset_filename, images_dirname, DATABASES_PREFIX
+    )
+    university.download_files()
+    university.convert_and_add()
