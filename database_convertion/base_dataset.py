@@ -16,7 +16,6 @@ class BaseDataset(ABC):
         return "BaseDataset"
     
     @property
-    @abstractmethod
     def image_file_prefix(self) -> str:
         """
         This property is to be set to the prefix of an image.
