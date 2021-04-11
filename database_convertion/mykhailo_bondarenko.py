@@ -110,4 +110,4 @@ if __name__ == "__main__":
         dataset_filename, images_dirname, DATABASES_PREFIX
     )
     university.download_files()
-    university.convert_and_add()
+    university.convert_and_add()/
