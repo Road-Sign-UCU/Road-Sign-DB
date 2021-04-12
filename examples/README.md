@@ -8,3 +8,4 @@
 #### The folder also contains:
 
 `base_dataset.py` -- Stefan @elem3ntary -- this base class was created for the convenience of DB class creation.
+`main.py` -- Mykhailo -- created for running the DB converting process as a whole.
