@@ -106,6 +106,8 @@ if __name__ == "__main__":
     for directory in [dataset_filename, images_dirname, DATABASES_PREFIX]:
         if not os.path.exists(directory):
             os.mkdir(directory)
+    
+    # These lines are to be modified in your own module:
     university = SwedishSignsLinkopingsUniversitet(
         dataset_filename, images_dirname, DATABASES_PREFIX
     )
