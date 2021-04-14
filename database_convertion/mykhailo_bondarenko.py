@@ -92,7 +92,7 @@ class SwedishSignsLinkopingsUniversitet(BaseDataset):
                         # TODO: add pandas write
                         dataset_f.write(','.join((
                             os.path.basename(image_path_new),
-                            str(initial_size_x), str(initial_size_y),
+                            str(initial_size_x), str(initial_size_y), "SWEDEN",
                             image_visibility, image_class, image_type
                         )) + '\n')
 
