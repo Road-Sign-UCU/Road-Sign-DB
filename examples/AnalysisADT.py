@@ -24,6 +24,7 @@ class _SignPointStruct(ctypes.Structure):
         ('sign_type', ctypes.c_char * 64),
     ]
 
+
 class SignPointProcess:
     """
     Contains all processing methods for the _SignPointStruct class
@@ -87,7 +88,12 @@ class SignPointProcess:
         ) = props
         return sign_point
 
+
 class SignPointArray:
+    """
+    Represents an array of signs.
+    """
+
     def __init__(self, num_rows=1, el_ctype=ctypes.py_object):
         self._arr_size = 10
         self._rows = (_SignPointStruct * self._arr_size)()
