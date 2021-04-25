@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod
 import os
+from abc import ABC, abstractmethod
 
+from AnalysisADT import SignPointArray
 
 class BaseDataset(ABC):
     """
@@ -45,10 +46,18 @@ class BaseDataset(ABC):
         )
         self.create_dirs()
 
+        self.spa = SignPointArray()
+
         self._at_mydir = lambda p: os.path.join(self.directory_name, p)
         self._free_img_num = 0
 
-    def generate_new_image_file_path(self, image_name):
+    def append_data_to_file(self):
+        """
+        Appends data to the dataset file. Use this in convert_and_add() function.
+        """
+        self.spa.to_file(self.app_dataset_filename)
+
+    def generate_new_image_file_path(self, image_postfix):
         """
         This function generates a filename for the
         image that is to be downloaded.
@@ -59,7 +68,7 @@ class BaseDataset(ABC):
             (
                 self.image_file_prefix +
                 f'{self._free_img_num:8}'.replace(' ', '0') +
-                '.' + image_name.split('.')[-1]
+                '.' + image_postfix
             )
         )
 
