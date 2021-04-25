@@ -1,175 +1,155 @@
-'''
-Contains an ADT for daa analysis
-'''
+"""
+Contains an ADT for data analysis
+
+Requirements for the SignPointArray ADT:
+
+1) from_file(filename) -- read the data from the file.
+2) to_file(filename) -- write the data to the file.
+3) add_entry() -- add an entry to the Array. Uses named parameters.
+TODO: 4) get_stats() -- get all the needed statistics (may be split into multiple methods)
+"""
 import sys
 import ctypes
 
-
-class SignPoint(ctypes.Structure):
-    """
-    Contains all into about a point taken from the database.
-    """
+# Contains all info about a point taken from the database.
+class _SignPointStruct(ctypes.Structure):
+    _pack_ = 1
     _fields_ = [
-        ('image_name', ctypes.py_object),
+        ('image_name', ctypes.c_char * 128),
         ('initial_size_x', ctypes.c_int),
         ('initial_size_y', ctypes.c_int),
-        ('country', ctypes.py_object),
-        ('occlusions', ctypes.py_object),
-        ('sign_class', ctypes.py_object),
-        ('sign_type', ctypes.py_object),
+        ('country', ctypes.c_char * 64),
+        ('occlusions', ctypes.c_char * 64),
+        ('sign_class', ctypes.c_char * 64),
+        ('sign_type', ctypes.c_char * 64),
     ]
 
-    def __repr__(self):
+class SignPointProcess:
+    """
+    Contains all processing methods for the _SignPointStruct class
+    """
+    @staticmethod
+    def from_props(
+            image_name: str, initial_size_x: int, initial_size_y: int, country: str='-1',
+            occlusions: str='-1', sign_class: str='-1', sign_type: str='-1'
+        ):
+        """
+        initialise from props
+        >>> SignPointProcess.from_props("img.jpg", 100, 50, "GERMANY", 'VISIBLE', 'PROHIBITORY', '120_SIGN').image_name
+        b'img.jpg'
+        """
+        initial_size_x, initial_size_y = int(initial_size_x), int(initial_size_y)
+        image_name, country, occlusions, sign_class, sign_type = map(
+            lambda x: bytes(x, encoding='utf-8'), (x for x in (image_name, country, occlusions, sign_class, sign_type))
+        )
+        sign_point = _SignPointStruct()
+        (
+            sign_point.image_name, sign_point.initial_size_x, sign_point.initial_size_y,
+            sign_point.country, sign_point.occlusions, sign_point.sign_class, sign_point.sign_type
+        ) = (
+            image_name, initial_size_x, initial_size_y, country, occlusions, sign_class, sign_type
+        )
+        return sign_point
+
+    @staticmethod
+    def to_repr(sign_point):
+        """
+        transform to a comma-separated representation
+        >>> SignPointProcess.to_repr(SignPointProcess.from_repr("img.jpg,100,50,GERMANY,VISIBLE,PROHIBITORY,120_SIGN")).image_name
+        b'img.jpg'
+        """
+        image_name, country, occlusions, sign_class, sign_type =  map(
+            lambda x: str(x, encoding='utf-8'), (x for x in (
+                sign_point.image_name, sign_point.country, sign_point.occlusions,
+                sign_point.sign_class, sign_point.sign_type
+            ))
+        )
         return ','.join(map(str, (
-            self.image_name, self.initial_size_x, self.initial_size_y,
-            self.country, self.occlusions, self.sign_class, self.sign_type
+            image_name, sign_point.initial_size_x, sign_point.initial_size_y,
+            country, occlusions, sign_class, sign_type
         )))
 
-    def from_repr(self, file_line):
+    @staticmethod
+    def from_repr(file_line):
         """
-        >>> sp = SignPoint()
-        >>> sp.from_repr("img.jpg,100,50,GERMANY,VISIBLE,PROHIBITORY,120_SIGN")
-        >>> print(sp.image_name)
-        img.jpg
+        >>> SignPointProcess.from_repr("img.jpg,100,50,GERMANY,VISIBLE,PROHIBITORY,120_SIGN").image_name
+        b'img.jpg'
         """
-        props = file_line.strip('\n').split(",")
+        props = file_line.strip().split(",")
+        props[0] = bytes(props[0], encoding='utf-8')
         props[1], props[2] = int(props[1]), int(props[2])
+        for i in range(3, 7):
+            props[i] = bytes(props[i], encoding='utf-8')
+        sign_point = _SignPointStruct()
         (
-            self.image_name, self.initial_size_x, self.initial_size_y,
-            self.country, self.occlusions, self.sign_class, self.sign_type
+            sign_point.image_name, sign_point.initial_size_x, sign_point.initial_size_y,
+            sign_point.country, sign_point.occlusions, sign_point.sign_class, sign_point.sign_type
         ) = props
+        return sign_point
 
-    def __sizeof__(self):
-        return ctypes.sizeof(self) + sys.getsizeof(self)
-
-
-# create from line in file:
-sp = SignPoint()
-sp.from_repr("img.jpg,100,50,GERMANY,VISIBLE,PROHIBITORY,120_SIGN")
-# print()
-# print(sp)
-# create from constructor
-p = SignPoint("img.jpg", 100, 50, "GERMANY", 'VISIBLE', 'PROHIBITORY', '120_SIGN')
-print()
-print("Put this into CSV:")
-print(p)
-print()
-print("Access properties:")
-print(p.image_name, p.initial_size_x, p.initial_size_y)
-print()
-print("Struct size in bytes: ", ctypes.sizeof(p) + sys.getsizeof(p))
-
-
-####  ARRAY CODE BEGINS HERE
-
-
-# Implements the Array ADT using array capabilities of the ctypes module.
-class Array:
-    # Creates an array with size elements.
-    def __init__(self, size, el_ctype=ctypes.py_object):
-        assert size > 0, "Array size must be > 0"
-        self._size = size
-        self._el_ctype = el_ctype
-        self._none_type = None if el_ctype == ctypes.py_object else el_ctype(0)
-        # Create the array structure using the ctypes module.
-        py_array_type = el_ctype * size
-        self._elements = py_array_type()
-        # Initialize each element.
-        self.clear(self._none_type)
-
-    # Returns the size of the array.
-    def __len__(self):
-        return self._size
-
-    # Gets the contents of the index element.
-    def __getitem__(self, index):
-        assert 0 <= index < len(self), "Array subscript out of range"
-        return self._elements[index]
-
-    # Puts the value in the array element at index position.
-    def __setitem__(self, index, value):
-        assert 0 <= index < len(self), "Array subscript out of range"
-        self._elements[index] = value
-
-    # Clears the array by setting each element to the given value.
-    def clear(self, value=None):
-        if value is None:
-            value = self._none_type
-        for i in range(len(self)):
-            self._elements[i] = value
-
-    # Returns the array's iterator for traversing the elements.
-    def __iter__(self):
-        return _ArrayIterator(self._elements)
-
-    # Calculates array's size in bytes.
-    def __sizeof__(self):
-        size = ctypes.sizeof(self._elements)
-        size += sum(
-            sys.getsizeof(elem)
-            for elem in self.__dict__.values()
-        )
-        return size
-
-
-# An iterator for the Array ADT.
-class _ArrayIterator:
-    def __init__(self, the_array):
-        self._array_ref = the_array
-        self._cur_index = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self._cur_index < len(self._array_ref):
-            entry = self._array_ref[self._cur_index]
-            self._cur_index += 1
-            return entry
-        else:
-            raise StopIteration
-
-
-# this will read the whole file into structs (EXAMPLE CODE)
 class SignPointArray:
     def __init__(self, num_rows=1, el_ctype=ctypes.py_object):
-        self._el_ctype = el_ctype
-        self._none_type = None if el_ctype == ctypes.py_object else el_ctype(0)
-
-        # Create a 1-D array to store an array reference for each row.
-        self.rows = Array(num_rows)
-
-        # Create the 1-D arrays for each row of the 2-D array.
-        for i in range(num_rows):
-            self.rows[i] = SignPoint()
+        self._arr_size = 10
+        self._rows = (_SignPointStruct * self._arr_size)()
+        self._free_ind = 0
+        self._append_from = 0
 
     def from_file(self, filename):
-        for row, line in enumerate(open(filename, 'r')):
-            self.rows[row].from_repr(line)
+        """
+        initialise an array from a file
+        """
+        lines = [line for line in open(filename, 'r')]
+        self._arr_size = len(lines)
+        self._rows = (_SignPointStruct * self._arr_size)()
+        for row, line in enumerate(lines):
+            self._rows[row] = SignPointProcess.from_repr(line)
+        self._free_ind = self._arr_size
+        self._append_from = self._free_ind
 
-    def num_rows(self):
-        return len(self.rows)
-
-    # Gets the contents of the element at position [i, j]
-    def __getitem__(self, index):
-        return self.rows[index]
-
-    # Sets the contents of the element at position [i,j] to value.
-    def __setitem__(self, index, value):
-        self.rows[index] = value
-
-    # Returns the array's iterator for traversing the elements.
-    def __iter__(self):
-        return _ArrayIterator(self.rows)
-
-    # Calculates array's size in bytes.
-    def __sizeof__(self):
-        size = sum(
-            sys.getsizeof(self.rows[row])
-            for row in range(self.num_rows())
+    def add_entry(
+            self, image_name: str, initial_size_x: int, initial_size_y: int, country: str='-1',
+            occlusions: str='-1', sign_class: str='-1', sign_type: str='-1'
+        ):
+        """
+        adds a new entry and enlarges an array is needed
+        """
+        sign_point = SignPointProcess.from_props(
+            image_name, initial_size_x, initial_size_y, country, occlusions, sign_class, sign_type
         )
+        while self._free_ind >= self._arr_size:
+            self._enlarge()
+        self._rows[self._free_ind] = sign_point
+        self._free_ind += 1
+
+    def _enlarge(self, times=2):
+        """
+        makes an array 2 times bigger
+        """
+        self._arr_size *= times
+        new_rows = (_SignPointStruct * self._arr_size)()
+        ctypes.memmove(new_rows, self._rows, ctypes.sizeof(self._rows))
+        self._rows = new_rows
+
+    def to_file(self, filename, mode='a'):
+        """
+        write the data to the file.
+
+        change mode to 'w' to rewite file
+        """
+        with open(filename, mode=mode) as f_out:
+            ind_from = 0
+            if mode == 'a':
+                ind_from = self._append_from
+            f_out.write('\n'.join(SignPointProcess.to_repr(self._rows[i]) for i in range(ind_from, self._free_ind)) + "\n")
+
+    def __sizeof__(self):
+        """
+        Calculates class's size in bytes.
+        """
+        size = ctypes.sizeof(self._rows)
         size += sum(
             sys.getsizeof(elem)
             for elem in self.__dict__.values()
         )
         return size
+    
