@@ -95,7 +95,7 @@ class SignPointArray:
     """
 
     def __init__(self, num_rows=1, el_ctype=ctypes.py_object):
-        self._arr_size = 10
+        self._arr_size = 16
         self._rows = (_SignPointStruct * self._arr_size)()
         self._free_ind = 0
         self._append_from = 0
