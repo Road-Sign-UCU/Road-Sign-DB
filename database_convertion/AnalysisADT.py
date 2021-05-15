@@ -6,10 +6,14 @@ Requirements for the SignPointArray ADT:
 1) from_file(filename) -- read the data from the file.
 2) to_file(filename) -- write the data to the file.
 3) add_entry() -- add an entry to the Array. Uses named parameters.
-TODO: 4) get_stats() -- get all the needed statistics (may be split into multiple methods)
+TODO: 4) analyse() -- get all the needed statistics (may be split into multiple methods)
 """
+import os
 import sys
 import ctypes
+
+import numpy as np
+from cv2 import cv2
 
 # Contains all info about a point taken from the database.
 class _SignPointStruct(ctypes.Structure):
@@ -94,7 +98,7 @@ class SignPointArray:
     Represents an array of signs.
     """
 
-    def __init__(self, num_rows=1, el_ctype=ctypes.py_object):
+    def __init__(self):
         self._arr_size = 16
         self._rows = (_SignPointStruct * self._arr_size)()
         self._free_ind = 0
@@ -103,6 +107,7 @@ class SignPointArray:
     def from_file(self, filename):
         """
         initialise an array from a file
+        returns self
         """
         lines = [line for line in open(filename, 'r')]
         self._arr_size = len(lines)
@@ -111,6 +116,7 @@ class SignPointArray:
             self._rows[row] = SignPointProcess.from_repr(line)
         self._free_ind = self._arr_size
         self._append_from = self._free_ind
+        return self
 
     def add_entry(
             self, image_name: str, initial_size_x: int, initial_size_y: int, country: str='-1',
@@ -158,4 +164,75 @@ class SignPointArray:
             for elem in self.__dict__.values()
         )
         return size
-    
+
+    def analyse_country(self, show=True, save=True, save_dir='./analysis/'):
+        """
+        Analyse origin country of the signs
+        """
+        countries_nums_dict = dict()
+        for row in self._rows:
+            country = row.country
+            if country in countries_nums_dict:
+                countries_nums_dict[country] += 1
+            else:
+                countries_nums_dict[country] = 0
+        return countries_nums_dict
+
+    def analyse_types(self):
+        """
+        Analyse the variety of the sign types
+        """
+        types_nums_dict = dict()
+        for row in self._rows:
+            country = row.sign_type
+            if country in types_nums_dict:
+                types_nums_dict[country] += 1
+            else:
+                types_nums_dict[country] = 0
+        return types_nums_dict
+
+    def analyse_visibility(self):
+        """
+        analyse sign visibility
+        """
+        visibilities_nums_dict = dict()
+        for row in self._rows:
+            country = row.occlusions
+            if country in visibilities_nums_dict:
+                visibilities_nums_dict[country] += 1
+            else:
+                visibilities_nums_dict[country] = 0
+        return visibilities_nums_dict
+
+    def analyse_brightness(self, images_dirname):
+        """
+        analyse sign image brightness distribution
+        """
+        brightness_list = []
+        for row in self._rows:
+            img_name = os.path.join(images_dirname, str(row.image_name, encoding='utf-8'))
+            img = cv2.imread(img_name)
+            pixels_num = img.shape[0] * img.shape[1] * img.shape[2]
+            brightness_list.append(np.sum(img) / pixels_num)
+        return np.array(brightness_list)
+
+    def analyse_ratio(self):
+        """
+        analyse image x / y ratio distribution
+        """
+        ratio_list = []
+        for row in self._rows:
+            ratio_list.append(row.initial_size_x / row.initial_size_y)
+        return np.array(ratio_list)
+
+    def analyse(self, images_dirname):
+        """
+        performs an analysis on the dataset
+        """
+        analysis = dict()
+        analysis['country'] = self.analyse_country()
+        analysis['type'] = self.analyse_types()
+        analysis['visibility'] = self.analyse_visibility()
+        analysis['brightness'] = self.analyse_brightness(images_dirname)
+        analysis['ratio'] = self.analyse_ratio()
+        return analysis
