@@ -65,8 +65,7 @@ class Database:
         with open(self.fetched_filename, 'w') as fetched_file:
             for item in self.fetched_set:
                 fetched_file.write(item + "\n")
-        print(f"\nDone!\n\nTo clear cache, remove the Datasets directory with:\nrm -rf {DATABASES_PREFIX}")
-        print(f"You can copy the generated analysis files from: {self.analysis_dirname}")
+        print(f"\nDone!\n\n=> To clear cache, remove the Datasets directory with:\nrm -rf {DATABASES_PREFIX}")
 
     def fetch_swedish_signs_linkopings_universitet(self):
         """
@@ -199,6 +198,8 @@ class Database:
                 plt.savefig(os.path.join(self.analysis_dirname, title + ".jpg"), dpi=300)
             if show:
                 plt.show()
+
+        print(f"\n=> You can copy the generated analysis files from:\n{self.analysis_dirname}")
 
 
 def main(plt):
