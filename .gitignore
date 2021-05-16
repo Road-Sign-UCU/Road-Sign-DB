@@ -7,3 +7,5 @@ APIs
 images
 *.swp
 analysis
+fetched.txt
+_doc

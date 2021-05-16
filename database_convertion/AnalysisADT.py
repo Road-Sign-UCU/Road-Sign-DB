@@ -230,9 +230,14 @@ class SignPointArray:
         performs an analysis on the dataset
         """
         analysis = dict()
+        print("Analysing dataset sign countries...")
         analysis['country'] = self.analyse_country()
+        print("Analysing dataset sign types...")
         analysis['type'] = self.analyse_types()
+        print("Analysing dataset sign visibility...")
         analysis['visibility'] = self.analyse_visibility()
+        print("Analysing dataset sign image brightness...")
         analysis['brightness'] = self.analyse_brightness(images_dirname)
+        print("Analysing dataset sign image initial resolution ratio...")
         analysis['ratio'] = self.analyse_ratio()
         return analysis
