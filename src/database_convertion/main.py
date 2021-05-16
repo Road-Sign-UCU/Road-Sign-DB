@@ -105,7 +105,6 @@ class Database:
                 lambda x: x[0] != b"NO_INFO", 
                 zip(stats.keys(), stats.values())
             )), key=lambda x: x[1])
-            input(lv_tuple_list)
             labels = [x[0] for x in lv_tuple_list]
             vals = [x[1] for x in lv_tuple_list]
             _ = plt.figure(figsize=(14, 7))
