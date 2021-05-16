@@ -9,3 +9,6 @@ images
 analysis
 fetched.txt
 _doc
+_build
+_static
+_templates
