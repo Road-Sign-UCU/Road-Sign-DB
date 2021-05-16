@@ -10,27 +10,29 @@ class ConvertedDatasetsDownloader(BaseDataset):
     """
     Downloads the merged dataset instead of merging it again
     """
-    website_prefix = "github-lfs"
+    website_prefix = "https://shop-rent-aws-bucket.s3-us-west-1.amazonaws.com/"
     download_folder_name = "ConvertedDatasetsDownloader"
 
     def download_files(self):
         """
         Download the nessesary database files.
         """
-        print("Downloading DATASET.csv...")
         dataset_csv_url = self.website_prefix + "DATASET.csv"
         dataset_csv_filename = dataset_csv_url.split("/")[-1]
         self._dataset_csv_path = self._at_mydir(dataset_csv_filename)
         if not os.path.exists(self._dataset_csv_path):
             download_file(dataset_csv_url, self._dataset_csv_path, verify=False)
+        os.rename(self._dataset_csv_path, self.app_dataset_filename)
 
-        print("Downloading images.zip...")
         images_zip_url = self.website_prefix + "images.zip"
         images_zip_filename = images_zip_url.split("/")[-1]
         self._images_zip_zip_path = self._at_mydir(images_zip_filename)
         if not os.path.exists(self._images_zip_zip_path):
             download_file(images_zip_url, self._images_zip_zip_path, verify=False)
-            unzip_file(self._images_zip_zip_path, self.directory_name)
+            unzip_file(self._images_zip_zip_path, os.path.split(self.images_dirname)[0])
+
+    def convert_and_add(self):
+        return super().convert_and_add()
 
 
 class SwedishSignsLinkopingsUniversitet(BaseDataset):
