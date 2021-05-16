@@ -12,3 +12,5 @@ _doc
 _build
 _static
 _templates
+.idea
+tests/test_utils/tmp.csv
