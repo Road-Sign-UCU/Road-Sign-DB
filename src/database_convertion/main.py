@@ -206,12 +206,3 @@ def main(plt):
     """
     Database().fetch_all()
     Database().analyse(plt)
-
-
-# if __name__ == "__main__":
-#     from matplotlib import pyplot as plt
-#     import matplotlib as mpl
-#     mpl.rc('font', **{
-#         'size'   : 8
-#     })
-#     main()
