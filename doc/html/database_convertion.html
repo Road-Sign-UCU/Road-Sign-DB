@@ -305,7 +305,8 @@ GitHub website.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="database_convertion.main.Database.fetch_converted">
 <span class="sig-name descname"><span class="pre">fetch_converted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.fetch_converted" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Downloads &amp; unzips the converted dataset</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="database_convertion.main.Database.fetch_german_traffic_signs">
@@ -345,6 +346,28 @@ download &amp; convert a dataset.</p>
 <dd><p>Bases: <a class="reference internal" href="#database_convertion.base_dataset.BaseDataset" title="database_convertion.base_dataset.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">database_convertion.base_dataset.BaseDataset</span></code></a></p>
 <p>Downloads the merged dataset instead of merging it again</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.convert_and_add">
+<span class="sig-name descname"><span class="pre">convert_and_add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.convert_and_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert all the downloaded files here.</p>
+<p>Save the images to self.generate_new_image_file_path()</p>
+<p>For EXAMPLE:
+img = cv2.imread(self._at_mydir(&quot;some_img.jpg&quot;))
+img_conv = img  # convert your image here
+image_path_new = self.generate_new_image_file_path()
+if not os.path.exists(image_path_new):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>img_conv = cv2.resize(</dt><dd><p>img_conv, (128, 128), interpolation=cv2.INTER_AREA</p>
+</dd>
+</dl>
+<p>)
+cv2.imwrite(image_path_new, img_conv)</p>
+</div></blockquote>
+<p>WHEN writing to the CSV, obtain the image name using the following:
+os.path.basename(image_path_new)</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.download_files">
 <span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.download_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download the nessesary database files.</p>
@@ -357,7 +380,7 @@ download &amp; convert a dataset.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.website_prefix">
-<span class="sig-name descname"><span class="pre">website_prefix</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'github-lfs'</span></em><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.website_prefix" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">website_prefix</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://shop-rent-aws-bucket.s3-us-west-1.amazonaws.com/'</span></em><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.website_prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
