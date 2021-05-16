@@ -2,10 +2,10 @@ import os
 
 import numpy as np
 
+from .stefan import KaggleRoadSign
 from .AnalysisADT import SignPointArray
 from .bmykhaylivvv import GermanTrafficSigns
-from .mykhailo_bondarenko import SwedishSignsLinkopingsUniversitet
-from .stefan import KaggleRoadSign
+from .mykhailo_bondarenko import SwedishSignsLinkopingsUniversitet, ConvertedDatasetsDownloader
 
 MAIN_PATH = os.path.dirname(os.path.realpath(__file__))
 DATABASES_PREFIX = os.path.join(MAIN_PATH, "Databases")
@@ -46,15 +46,26 @@ class Database:
         """
         Download&convert all the nessesary datasets
         """
-        print("WARNING: fetching may take up to 1 hour because of download speeds")
         with open(self.fetched_filename, 'r') as fetched_file:
             self.fetched_set = set(map(str.strip, fetched_file.readlines()))
-        self.fetch_swedish_signs_linkopings_universitet()
-        self.fetch_german_traffic_signs()
-        self.fetch_kaggle_road_signs()
+        print(
+            "Do you want to:\n    1) download & convert from scratch (>4Gb)\n" + 
+            "    2) download & unzip the converted dataset(~105 Mb)"
+        )
+        valid = lambda x: x.isnumeric() and int(x) in [1, 2]
+        while not valid(ans := input("Choise (1/2): ")):
+            print("Invalid Choice. Try Again.")
+        if ans == '1':
+            print("WARNING: fetching may take up to 1 hour because of download speeds")
+            self.fetch_swedish_signs_linkopings_universitet()
+            self.fetch_german_traffic_signs()
+            self.fetch_kaggle_road_signs()
+        else:
+            self.fetch_converted()
         with open(self.fetched_filename, 'w') as fetched_file:
             for item in self.fetched_set:
                 fetched_file.write(item + "\n")
+        print("\nDone!\nTo clear cache, remove the Datasets directory.")
 
     def fetch_swedish_signs_linkopings_universitet(self):
         """
@@ -111,13 +122,26 @@ class Database:
             print('...done (cached)')
 
     def fetch_converted(self):
-        pass
+        """
+        Downloads & unzips the converted dataset
+        """
+        print("Fetching signs from the converted dataset...")
+        db_name = 'ConvertedDatasetsDownloader'
+        if db_name not in self.fetched_set:
+            conv_db = ConvertedDatasetsDownloader(
+                self.dataset_filename, self.images_dirname, DATABASES_PREFIX
+            )
+            conv_db.download_files()
+            self.fetched_set.add(db_name)
+            print('...done')
+        else:
+            print('...done (cached)')
 
     def analyse(self, plt, show=True, save=True):
         """
         Analyses the collected dataset 
         """
-        print("Performing data analysis...")
+        print("\nPerforming data analysis...")
         dataset = SignPointArray().from_file(self.dataset_filename)
         analysis = dataset.analyse(self.images_dirname)
         print("Plotting graphs...")
@@ -145,7 +169,7 @@ class Database:
             if show:
                 plt.show()
 
-        split_num = 40
+        split_num = 20
         for key, (title, xlabel, ylabel) in zip(
             ['brightness', 'ratio'], [
                 ('Image Brightness Distribution', "brightness interval", "number"),
@@ -182,12 +206,3 @@ def main(plt):
     """
     Database().fetch_all()
     Database().analyse(plt)
-
-
-# if __name__ == "__main__":
-#     from matplotlib import pyplot as plt
-#     import matplotlib as mpl
-#     mpl.rc('font', **{
-#         'size'   : 8
-#     })
-#     main()
