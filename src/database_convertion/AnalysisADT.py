@@ -1,12 +1,10 @@
 """
 Contains an ADT for data analysis
-
 Requirements for the SignPointArray ADT:
-
 1) from_file(filename) -- read the data from the file.
 2) to_file(filename) -- write the data to the file.
 3) add_entry() -- add an entry to the Array. Uses named parameters.
-TODO: 4) analyse() -- get all the needed statistics (may be split into multiple methods)
+4) analyse() -- get all the needed statistics (may be split into multiple methods)
 """
 import os
 import sys
@@ -104,12 +102,19 @@ class SignPointArray:
         self._free_ind = 0
         self._append_from = 0
 
+    def __len__(self):
+        """
+        Returns array length
+        """
+        return self._free_ind
+
     def from_file(self, filename):
         """
         initialise an array from a file
         returns self
         """
-        lines = [line for line in open(filename, 'r')]
+        with open(filename, 'r') as file_in:
+            lines = [line for line in file_in]
         self._arr_size = len(lines)
         self._rows = (_SignPointStruct * self._arr_size)()
         for row, line in enumerate(lines):
