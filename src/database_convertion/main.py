@@ -5,6 +5,7 @@ import numpy as np
 from .AnalysisADT import SignPointArray
 from .bmykhaylivvv import GermanTrafficSigns
 from .mykhailo_bondarenko import SwedishSignsLinkopingsUniversitet
+from .stefan import KaggleRoadSign
 
 MAIN_PATH = os.path.dirname(os.path.realpath(__file__))
 DATABASES_PREFIX = os.path.join(MAIN_PATH, "Databases")
@@ -38,6 +39,8 @@ class Database:
             os.mkdir(self.images_dirname)
         if not os.path.exists(self.analysis_dirname):
             os.mkdir(self.analysis_dirname)
+        if not os.path.exists(self.fetched_filename):
+            open(self.fetched_filename, 'w').close()
 
     def fetch_all(self):
         """
@@ -48,6 +51,7 @@ class Database:
             self.fetched_set = set(map(str.strip, fetched_file.readlines()))
         self.fetch_swedish_signs_linkopings_universitet()
         self.fetch_german_traffic_signs()
+        self.fetch_kaggle_road_signs()
         with open(self.fetched_filename, 'w') as fetched_file:
             for item in self.fetched_set:
                 fetched_file.write(item + "\n")
@@ -69,7 +73,7 @@ class Database:
             print('...done')
         else:
             print('...done (cached)')
-    
+
     def fetch_german_traffic_signs(self):
         """
         uses the GermanTrafficSigns class to
@@ -87,6 +91,27 @@ class Database:
             print('...done')
         else:
             print('...done (cached)')
+
+    def fetch_kaggle_road_signs(self):
+        """
+        uses the KaggleRoadSign class to
+        download & convert a dataset.
+        """
+        print("Fetching signs from Kaggle Road Sign dataset...")
+        db_name = 'KaggleRoadSign'
+        if db_name not in self.fetched_set:
+            kaggle = KaggleRoadSign(
+                self.dataset_filename, self.images_dirname, DATABASES_PREFIX
+            )
+            kaggle.download_files()
+            kaggle.convert_and_add()
+            self.fetched_set.add(db_name)
+            print('...done')
+        else:
+            print('...done (cached)')
+
+    def fetch_converted(self):
+        pass
 
     def analyse(self, plt, show=True, save=True):
         """
@@ -107,15 +132,20 @@ class Database:
             )), key=lambda x: x[1])
             labels = [x[0] for x in lv_tuple_list]
             vals = [x[1] for x in lv_tuple_list]
-            _ = plt.figure(figsize=(14, 7))
+            _ = plt.figure(figsize=(14, 9))
             plt.barh(labels, vals)
             plt.title(title)
+            if key == 'type':
+                plt.subplots_adjust(left=0.26, right=0.98)
+            else:
+                pass
+                # plt.subplots_adjust(left=0.125, right=0.9)
             if save:
                 plt.savefig(os.path.join(self.analysis_dirname, title + ".jpg"), dpi=300)
             if show:
                 plt.show()
 
-        split_num = 20
+        split_num = 40
         for key, (title, xlabel, ylabel) in zip(
             ['brightness', 'ratio'], [
                 ('Image Brightness Distribution', "brightness interval", "number"),
@@ -132,7 +162,7 @@ class Database:
                 less_than_sp_to = stats <= sp_to
                 split_num_list.append(np.count_nonzero(less_than_sp_to ^ ignore))
                 ignore |= less_than_sp_to
-            _ = plt.figure(figsize=(14, 7))
+            _ = plt.figure(figsize=(14, 9))
             plt.bar(split_str_list, split_num_list)
             plt.xlabel(xlabel)
             plt.ylabel(ylabel)

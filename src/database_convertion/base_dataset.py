@@ -85,7 +85,7 @@ class BaseDataset(ABC):
     def download_files(self):
         """
         Download all the needed files here.
-    
+
         For EXAMPLE:
         smth_url = "example.com/smth.txt"
         smth_filename = smth_url.split("/")[-1]

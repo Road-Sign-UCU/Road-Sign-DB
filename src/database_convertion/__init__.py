@@ -5,4 +5,5 @@ from . import AnalysisADT
 from . import base_dataset
 from . import bmykhaylivvv
 from . import mykhailo_bondarenko
+from . import stefan
 from . import file_operation
