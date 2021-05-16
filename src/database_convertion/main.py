@@ -65,7 +65,7 @@ class Database:
         with open(self.fetched_filename, 'w') as fetched_file:
             for item in self.fetched_set:
                 fetched_file.write(item + "\n")
-        print("\nDone!\nTo clear cache, remove the Datasets directory.")
+        print(f"\nDone!\nTo clear cache, remove the Datasets directory with: \nrm -rf {DATABASES_PREFIX}")
 
     def fetch_swedish_signs_linkopings_universitet(self):
         """
