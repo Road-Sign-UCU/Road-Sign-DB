@@ -1,4 +1,4 @@
-image:
+image_name:
 must a 128x128 image path string.
 
 initial_size_x:
@@ -6,6 +6,9 @@ must be an integer
 
 initial_size_y:
 must be an integer
+
+country:
+must be a name of country in CAPITAL LETTERS.
 
 occlusions: 
 VISIBLE -- is perfectly visible
