@@ -1,7 +1,7 @@
 import os
 from abc import ABC, abstractmethod
 
-from AnalysisADT import SignPointArray
+from .AnalysisADT import SignPointArray
 
 class BaseDataset(ABC):
     """

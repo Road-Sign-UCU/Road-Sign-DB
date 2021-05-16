@@ -103,13 +103,18 @@ class SignPointArray:
         self._rows = (_SignPointStruct * self._arr_size)()
         self._free_ind = 0
         self._append_from = 0
+        self._test = 0
+
+    def __len__(self):
+        return self._arr_size
 
     def from_file(self, filename):
         """
         initialise an array from a file
         returns self
         """
-        lines = [line for line in open(filename, 'r')]
+        with open(filename, 'r') as f:
+            lines = [line for line in f]
         self._arr_size = len(lines)
         self._rows = (_SignPointStruct * self._arr_size)()
         for row, line in enumerate(lines):
@@ -230,9 +235,14 @@ class SignPointArray:
         performs an analysis on the dataset
         """
         analysis = dict()
+        print("Analysing dataset sign countries...")
         analysis['country'] = self.analyse_country()
+        print("Analysing dataset sign types...")
         analysis['type'] = self.analyse_types()
+        print("Analysing dataset sign visibility...")
         analysis['visibility'] = self.analyse_visibility()
+        print("Analysing dataset sign image brightness...")
         analysis['brightness'] = self.analyse_brightness(images_dirname)
+        print("Analysing dataset sign image initial resolution ratio...")
         analysis['ratio'] = self.analyse_ratio()
         return analysis
