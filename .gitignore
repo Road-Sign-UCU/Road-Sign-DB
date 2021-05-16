@@ -7,8 +7,10 @@ APIs
 images
 *.swp
 analysis
+.idea
 fetched.txt
 _doc
 _build
 _static
 _templates
+

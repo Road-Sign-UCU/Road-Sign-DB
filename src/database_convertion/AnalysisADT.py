@@ -103,13 +103,18 @@ class SignPointArray:
         self._rows = (_SignPointStruct * self._arr_size)()
         self._free_ind = 0
         self._append_from = 0
+        self._test = 0
+
+    def __len__(self):
+        return self._arr_size
 
     def from_file(self, filename):
         """
         initialise an array from a file
         returns self
         """
-        lines = [line for line in open(filename, 'r')]
+        with open(filename, 'r') as f:
+            lines = [line for line in f]
         self._arr_size = len(lines)
         self._rows = (_SignPointStruct * self._arr_size)()
         for row, line in enumerate(lines):
