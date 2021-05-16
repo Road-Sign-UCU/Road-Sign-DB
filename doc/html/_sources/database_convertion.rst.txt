@@ -1,0 +1,69 @@
+database\_convertion package
+============================
+
+Submodules
+----------
+
+database\_convertion.AnalysisADT module
+---------------------------------------
+
+.. automodule:: database_convertion.AnalysisADT
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+database\_convertion.base\_dataset module
+-----------------------------------------
+
+.. automodule:: database_convertion.base_dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+database\_convertion.bmykhaylivvv module
+----------------------------------------
+
+.. automodule:: database_convertion.bmykhaylivvv
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+database\_convertion.file\_operation module
+-------------------------------------------
+
+.. automodule:: database_convertion.file_operation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+database\_convertion.main module
+--------------------------------
+
+.. automodule:: database_convertion.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+database\_convertion.mykhailo\_bondarenko module
+------------------------------------------------
+
+.. automodule:: database_convertion.mykhailo_bondarenko
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+database\_convertion.stefan module
+----------------------------------
+
+.. automodule:: database_convertion.stefan
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: database_convertion
+   :members:
+   :undoc-members:
+   :show-inheritance:

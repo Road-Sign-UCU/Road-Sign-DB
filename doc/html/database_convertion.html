@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+
+<html lang="English">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>database_convertion package &#8212; Road-Sign-DB 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="database_convertion" href="modules.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="database_convertion"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Road-Sign-DB 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">database_convertion</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">database_convertion package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="database-convertion-package">
+<h1>database_convertion package<a class="headerlink" href="#database-convertion-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-database_convertion.AnalysisADT">
+<span id="database-convertion-analysisadt-module"></span><h2>database_convertion.AnalysisADT module<a class="headerlink" href="#module-database_convertion.AnalysisADT" title="Permalink to this headline">¶</a></h2>
+<p>Contains an ADT for data analysis
+Requirements for the SignPointArray ADT:
+1) from_file(filename) -- read the data from the file.
+2) to_file(filename) -- write the data to the file.
+3) add_entry() -- add an entry to the Array. Uses named parameters.
+4) analyse() -- get all the needed statistics (may be split into multiple methods)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.AnalysisADT.</span></span><span class="sig-name descname"><span class="pre">SignPointArray</span></span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an array of signs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.add_entry">
+<span class="sig-name descname"><span class="pre">add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_size_x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_size_y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">country</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occlusions</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign_class</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.add_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>adds a new entry and enlarges an array is needed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.analyse">
+<span class="sig-name descname"><span class="pre">analyse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.analyse" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs an analysis on the dataset</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.analyse_brightness">
+<span class="sig-name descname"><span class="pre">analyse_brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.analyse_brightness" title="Permalink to this definition">¶</a></dt>
+<dd><p>analyse sign image brightness distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.analyse_country">
+<span class="sig-name descname"><span class="pre">analyse_country</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./analysis/'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.analyse_country" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyse origin country of the signs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.analyse_ratio">
+<span class="sig-name descname"><span class="pre">analyse_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.analyse_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>analyse image x / y ratio distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.analyse_types">
+<span class="sig-name descname"><span class="pre">analyse_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.analyse_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyse the variety of the sign types</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.analyse_visibility">
+<span class="sig-name descname"><span class="pre">analyse_visibility</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.analyse_visibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>analyse sign visibility</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.from_file">
+<span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>initialise an array from a file
+returns self</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointArray.to_file">
+<span class="sig-name descname"><span class="pre">to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'a'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointArray.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>write the data to the file.</p>
+<p>change mode to 'w' to rewite file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointProcess">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.AnalysisADT.</span></span><span class="sig-name descname"><span class="pre">SignPointProcess</span></span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contains all processing methods for the _SignPointStruct class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointProcess.from_props">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_size_x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_size_y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">country</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occlusions</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign_class</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'-1'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointProcess.from_props" title="Permalink to this definition">¶</a></dt>
+<dd><p>initialise from props
+&gt;&gt;&gt; SignPointProcess.from_props(&quot;img.jpg&quot;, 100, 50, &quot;GERMANY&quot;, 'VISIBLE', 'PROHIBITORY', '120_SIGN').image_name
+b'img.jpg'</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointProcess.from_repr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_repr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointProcess.from_repr" title="Permalink to this definition">¶</a></dt>
+<dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SignPointProcess</span><span class="o">.</span><span class="n">from_repr</span><span class="p">(</span><span class="s2">&quot;img.jpg,100,50,GERMANY,VISIBLE,PROHIBITORY,120_SIGN&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">image_name</span>
+<span class="go">b&#39;img.jpg&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.AnalysisADT.SignPointProcess.to_repr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">to_repr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sign_point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.AnalysisADT.SignPointProcess.to_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform to a comma-separated representation
+&gt;&gt;&gt; SignPointProcess.to_repr(SignPointProcess.from_repr(&quot;img.jpg,100,50,GERMANY,VISIBLE,PROHIBITORY,120_SIGN&quot;)).image_name
+b'img.jpg'</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-database_convertion.base_dataset">
+<span id="database-convertion-base-dataset-module"></span><h2>database_convertion.base_dataset module<a class="headerlink" href="#module-database_convertion.base_dataset" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.base_dataset.</span></span><span class="sig-name descname"><span class="pre">BaseDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_dataset_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">databases_prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>This module a database dosnloader &amp; processor inherits.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.append_data_to_file">
+<span class="sig-name descname"><span class="pre">append_data_to_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.append_data_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends data to the dataset file. Use this in convert_and_add() function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.convert_and_add">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">convert_and_add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.convert_and_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert all the downloaded files here.</p>
+<p>Save the images to self.generate_new_image_file_path()</p>
+<p>For EXAMPLE:
+img = cv2.imread(self._at_mydir(&quot;some_img.jpg&quot;))
+img_conv = img  # convert your image here
+image_path_new = self.generate_new_image_file_path()
+if not os.path.exists(image_path_new):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>img_conv = cv2.resize(</dt><dd><p>img_conv, (128, 128), interpolation=cv2.INTER_AREA</p>
+</dd>
+</dl>
+<p>)
+cv2.imwrite(image_path_new, img_conv)</p>
+</div></blockquote>
+<p>WHEN writing to the CSV, obtain the image name using the following:
+os.path.basename(image_path_new)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.create_dirs">
+<span class="sig-name descname"><span class="pre">create_dirs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.create_dirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the nessesary directories.
+override this don't forget super()!) if you want
+to create more dirs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.download_files">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.download_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download all the needed files here.</p>
+<p>For EXAMPLE:
+smth_url = &quot;example.com/smth.txt&quot;
+smth_filename = smth_url.split(&quot;/&quot;)[-1]
+self._smth_path = self._at_mydir(smth_filename)
+if not os.path.exists(self._smth_path):</p>
+<blockquote>
+<div><p>download_file(smth_url, self._smth_path)
+# you may also unpack the ZIP files here...</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.download_folder_name">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">download_folder_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.download_folder_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>This property is to be set to the name of the class</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.generate_new_image_file_path">
+<span class="sig-name descname"><span class="pre">generate_new_image_file_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_postfix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.generate_new_image_file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function generates a filename for the
+image that is to be downloaded.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database_convertion.base_dataset.BaseDataset.image_file_prefix">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">image_file_prefix</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#database_convertion.base_dataset.BaseDataset.image_file_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>This property is to be set to the prefix of an image.
+If not set (recommended), returns download_folder_name</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-database_convertion.bmykhaylivvv">
+<span id="database-convertion-bmykhaylivvv-module"></span><h2>database_convertion.bmykhaylivvv module<a class="headerlink" href="#module-database_convertion.bmykhaylivvv" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.bmykhaylivvv.GermanTrafficSigns">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.bmykhaylivvv.</span></span><span class="sig-name descname"><span class="pre">GermanTrafficSigns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_dataset_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">databases_prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.bmykhaylivvv.GermanTrafficSigns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#database_convertion.base_dataset.BaseDataset" title="database_convertion.base_dataset.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">database_convertion.base_dataset.BaseDataset</span></code></a></p>
+<p>This class downloads &amp; converts the &quot;German traffic signs&quot; datase from the
+GitHub website.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.bmykhaylivvv.GermanTrafficSigns.convert_and_add">
+<span class="sig-name descname"><span class="pre">convert_and_add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.bmykhaylivvv.GermanTrafficSigns.convert_and_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Doc</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.bmykhaylivvv.GermanTrafficSigns.download_files">
+<span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.bmykhaylivvv.GermanTrafficSigns.download_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the nessesary database files.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.bmykhaylivvv.GermanTrafficSigns.download_folder_name">
+<span class="sig-name descname"><span class="pre">download_folder_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'GermanTrafficSigns'</span></em><a class="headerlink" href="#database_convertion.bmykhaylivvv.GermanTrafficSigns.download_folder_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.bmykhaylivvv.GermanTrafficSigns.website_prefix">
+<span class="sig-name descname"><span class="pre">website_prefix</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://github.com/Road-Sign-UCU/Road-Sign-LFS/raw/german_db/'</span></em><a class="headerlink" href="#database_convertion.bmykhaylivvv.GermanTrafficSigns.website_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-database_convertion.file_operation">
+<span id="database-convertion-file-operation-module"></span><h2>database_convertion.file_operation module<a class="headerlink" href="#module-database_convertion.file_operation" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="database_convertion.file_operation.download_file">
+<span class="sig-prename descclassname"><span class="pre">database_convertion.file_operation.</span></span><span class="sig-name descname"><span class="pre">download_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.file_operation.download_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="database_convertion.file_operation.random_filename">
+<span class="sig-prename descclassname"><span class="pre">database_convertion.file_operation.</span></span><span class="sig-name descname"><span class="pre">random_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'png'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.file_operation.random_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="database_convertion.file_operation.unzip_file">
+<span class="sig-prename descclassname"><span class="pre">database_convertion.file_operation.</span></span><span class="sig-name descname"><span class="pre">unzip_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zip_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_to_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.file_operation.unzip_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-database_convertion.main">
+<span id="database-convertion-main-module"></span><h2>database_convertion.main module<a class="headerlink" href="#module-database_convertion.main" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.main.Database">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.main.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DATASET.csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'images'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analysis_dirname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'analysis'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to download &amp; convert all te datasets.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.main.Database.analyse">
+<span class="sig-name descname"><span class="pre">analyse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.analyse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyses the collected dataset</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.main.Database.fetch_all">
+<span class="sig-name descname"><span class="pre">fetch_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.fetch_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download&amp;convert all the nessesary datasets</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.main.Database.fetch_converted">
+<span class="sig-name descname"><span class="pre">fetch_converted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.fetch_converted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.main.Database.fetch_german_traffic_signs">
+<span class="sig-name descname"><span class="pre">fetch_german_traffic_signs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.fetch_german_traffic_signs" title="Permalink to this definition">¶</a></dt>
+<dd><p>uses the GermanTrafficSigns class to
+download &amp; convert a dataset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.main.Database.fetch_kaggle_road_signs">
+<span class="sig-name descname"><span class="pre">fetch_kaggle_road_signs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.fetch_kaggle_road_signs" title="Permalink to this definition">¶</a></dt>
+<dd><p>uses the KaggleRoadSign class to
+download &amp; convert a dataset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.main.Database.fetch_swedish_signs_linkopings_universitet">
+<span class="sig-name descname"><span class="pre">fetch_swedish_signs_linkopings_universitet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.Database.fetch_swedish_signs_linkopings_universitet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the SwedishSignsLinkopingsUniversitet to
+download &amp; convert a dataset.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="database_convertion.main.main">
+<span class="sig-prename descclassname"><span class="pre">database_convertion.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the DBs and perform analysis</p>
+</dd></dl>
+
+</section>
+<section id="module-database_convertion.mykhailo_bondarenko">
+<span id="database-convertion-mykhailo-bondarenko-module"></span><h2>database_convertion.mykhailo_bondarenko module<a class="headerlink" href="#module-database_convertion.mykhailo_bondarenko" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.mykhailo_bondarenko.</span></span><span class="sig-name descname"><span class="pre">ConvertedDatasetsDownloader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_dataset_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">databases_prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#database_convertion.base_dataset.BaseDataset" title="database_convertion.base_dataset.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">database_convertion.base_dataset.BaseDataset</span></code></a></p>
+<p>Downloads the merged dataset instead of merging it again</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.download_files">
+<span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.download_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the nessesary database files.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.download_folder_name">
+<span class="sig-name descname"><span class="pre">download_folder_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'ConvertedDatasetsDownloader'</span></em><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.download_folder_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.website_prefix">
+<span class="sig-name descname"><span class="pre">website_prefix</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'github-lfs'</span></em><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.ConvertedDatasetsDownloader.website_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.mykhailo_bondarenko.</span></span><span class="sig-name descname"><span class="pre">SwedishSignsLinkopingsUniversitet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_dataset_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_dirname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">databases_prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#database_convertion.base_dataset.BaseDataset" title="database_convertion.base_dataset.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">database_convertion.base_dataset.BaseDataset</span></code></a></p>
+<p>This class downloads &amp; convdrts the datase from the
+Linkopings Universitet website.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.convert_and_add">
+<span class="sig-name descname"><span class="pre">convert_and_add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.convert_and_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the downloaded dataset and convert it to append
+to the summary dataset csv.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.download_files">
+<span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.download_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the nessesary database files.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.download_folder_name">
+<span class="sig-name descname"><span class="pre">download_folder_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'SwedishSignsLinkopingsUniversitet'</span></em><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.download_folder_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.website_prefix">
+<span class="sig-name descname"><span class="pre">website_prefix</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://www.cvl.isy.liu.se/research/trafficSigns/swedishSignsSummer/'</span></em><a class="headerlink" href="#database_convertion.mykhailo_bondarenko.SwedishSignsLinkopingsUniversitet.website_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-database_convertion.stefan">
+<span id="database-convertion-stefan-module"></span><h2>database_convertion.stefan module<a class="headerlink" href="#module-database_convertion.stefan" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="database_convertion.stefan.KaggleRoadSign">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">database_convertion.stefan.</span></span><span class="sig-name descname"><span class="pre">KaggleRoadSign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.stefan.KaggleRoadSign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#database_convertion.base_dataset.BaseDataset" title="database_convertion.base_dataset.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">database_convertion.base_dataset.BaseDataset</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.stefan.KaggleRoadSign.convert_and_add">
+<span class="sig-name descname"><span class="pre">convert_and_add</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.stefan.KaggleRoadSign.convert_and_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refactors images and adds new entries to dataset</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.stefan.KaggleRoadSign.download_files">
+<span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.stefan.KaggleRoadSign.download_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads  required dataset</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.stefan.KaggleRoadSign.download_folder_name">
+<span class="sig-name descname"><span class="pre">download_folder_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'KaggleRoadSign'</span></em><a class="headerlink" href="#database_convertion.stefan.KaggleRoadSign.download_folder_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="database_convertion.stefan.KaggleRoadSign.get_value_by_tag">
+<span class="sig-name descname"><span class="pre">get_value_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database_convertion.stefan.KaggleRoadSign.get_value_by_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns value of first child node in first element that has a proper tag</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database_convertion.stefan.KaggleRoadSign.website_prefix">
+<span class="sig-name descname"><span class="pre">website_prefix</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://github.com/elem3ntary/roadsign_db/raw/master/'</span></em><a class="headerlink" href="#database_convertion.stefan.KaggleRoadSign.website_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-database_convertion">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-database_convertion" title="Permalink to this headline">¶</a></h2>
+<p>Contains methods for collecting, converting &amp; analysing the dataset</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">database_convertion package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-database_convertion.AnalysisADT">database_convertion.AnalysisADT module</a></li>
+<li><a class="reference internal" href="#module-database_convertion.base_dataset">database_convertion.base_dataset module</a></li>
+<li><a class="reference internal" href="#module-database_convertion.bmykhaylivvv">database_convertion.bmykhaylivvv module</a></li>
+<li><a class="reference internal" href="#module-database_convertion.file_operation">database_convertion.file_operation module</a></li>
+<li><a class="reference internal" href="#module-database_convertion.main">database_convertion.main module</a></li>
+<li><a class="reference internal" href="#module-database_convertion.mykhailo_bondarenko">database_convertion.mykhailo_bondarenko module</a></li>
+<li><a class="reference internal" href="#module-database_convertion.stefan">database_convertion.stefan module</a></li>
+<li><a class="reference internal" href="#module-database_convertion">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">database_convertion</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/database_convertion.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="database_convertion"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Road-Sign-DB 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >database_convertion</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">database_convertion package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Mykhailo Bondarenko, Bohdan Mykhailiv, .....
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+  </body>
+</html>
