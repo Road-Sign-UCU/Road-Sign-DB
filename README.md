@@ -5,11 +5,13 @@
 <details open="open">
   <summary>Information</summary>
   <ol>
-    <li><a href="#Description">Description</a></li>
+    <li><a href="#description">Description</a></li>
     <li><a href="#installation-and-setup">Installation and setup</a></li>
-    <li><a href="#початок-роботи">Початок роботи</a></li>
-    <li><a href="#використання">Використання</a></li>
-    <li><a href="#ліцензія">Ліцензія</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#support">Support</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#authors">Authors</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
@@ -28,12 +30,10 @@ At the end we get builded charts, which represent analyzed data and show us the 
 
 Requirements:
 
-```
-virtualenv -p python3 venv
-source venv/bin/activate
-pip install road-signs-db-convertion-michael
-python -m database_convertion
-```
+1*. ```virtualenv -p python3 venv```
+2*. ```source venv/bin/activate```
+3. ```pip install road-signs-db-convertion-michael```
+4. ```python -m database_convertion```
 
 - ## Usage 
 
@@ -41,7 +41,7 @@ The completed modules and three already added databases can be used for the furt
 
 - ## Support
 
-All questions may be asked through email adresses, which are mentioned in the contributors accounts` info. 
+All questions may be asked through email adresses, which are mentioned in the contributors accounts' info. 
 
 - ## Contributing
 
