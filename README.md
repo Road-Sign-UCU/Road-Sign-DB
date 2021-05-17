@@ -31,8 +31,11 @@ At the end we get builded charts, which represent analyzed data and show us the 
 Requirements:
 
 1*. ```virtualenv -p python3 venv```
+
 2*. ```source venv/bin/activate```
+
 3. ```pip install road-signs-db-convertion-michael```
+
 4. ```python -m database_convertion```
 
 - ## Usage 
