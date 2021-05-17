@@ -54,7 +54,7 @@ At the moment it is not available to contribute to this project.
 
 Mykhailo Bondarenko
 
-Bohdan Mykhailiv
+Bohdan Mykhayliv
 
 Stefan-Yuriy Malyk
 
