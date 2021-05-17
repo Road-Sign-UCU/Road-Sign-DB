@@ -35,10 +35,11 @@ def fetch_somedb(self):
 
 ## Початок роботи
 
-Для початку роботи:
-1. 1
-2. 2
-3. 3
+Для початку роботи:\
+1*. ```virtualenv -p python3 venv```\
+2*. ```source venv/bin/activate```\
+3. ```pip install road-signs-db-convertion-michael==0.0.2```\
+4. ```python -m database_convertion```
 
 ## Використання
 
