@@ -5,8 +5,8 @@
 <details open="open">
   <summary>Information</summary>
   <ol>
-    <li><a href="#про-проект">Про проект</a></li>
-    <li><a href="#основні-складові">Основні складові</a></li>
+    <li><a href="#Description">Description</a></li>
+    <li><a href="#installation-and-setup">Installation and setup</a></li>
     <li><a href="#початок-роботи">Початок роботи</a></li>
     <li><a href="#використання">Використання</a></li>
     <li><a href="#ліцензія">Ліцензія</a></li>
