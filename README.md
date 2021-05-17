@@ -36,9 +36,9 @@ def fetch_somedb(self):
 ## Початок роботи
 
 Для початку роботи:
-1. 1
-2. 2
-3. 3
+1. py`python3 -m pip install -r requirements.txt`
+2. py`python3 -m pip install road-signs-db-convertion-michael==0.0.1`
+3. py`python3 -m database_convertion`
 
 ## Використання
 
