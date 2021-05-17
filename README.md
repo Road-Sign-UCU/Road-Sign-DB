@@ -1,11 +1,9 @@
-# Road-Sign-DB
-
-# Create separate branches for your work!!!
+# **Road-Sign-DB**
 
 <hr/>
 
 <details open="open">
-  <summary>Інформація</summary>
+  <summary>Information</summary>
   <ol>
     <li><a href="#про-проект">Про проект</a></li>
     <li><a href="#основні-складові">Основні складові</a></li>
@@ -16,38 +14,51 @@
 </details>
 
 
+- ## Description:
 
-## Про проект
+This project was made to analyze three chosen datasets, which contain road sign photos and their description.
 
-Опис проекту.
+Modules for reformatting and converting data from used datasets are based on _basedataset.py_ module.
 
+These modules collect data into one datatset, which is later being analyzed.
 
-### Основні складові
+At the end we get builded charts, which represent analyzed data and show us the results.
 
-Основні складові.  
-#### main.py structure:
+- ## Installation and setup:
+
+Requirements:
+
 ```
-def fetch_somedb(self):
-    # download & move this database into the APPROPRIATE FOLDER. Like Databases/from-kaggle
+virtualenv -p python3 venv
+source venv/bin/activate
+pip install road-signs-db-convertion-michael
+python -m database_convertion
 ```
 
+- ## Usage 
 
+The completed modules and three already added databases can be used for the further research on this theme. All modules are working, and you can add your database, write the separate module for processing it, and widen the analyzed data.
 
-## Початок роботи
+- ## Support
 
-Для початку роботи:\
-1*. ```virtualenv -p python3 venv```\
-2*. ```source venv/bin/activate```\
-3. ```pip install road-signs-db-convertion-michael```\
-4. ```python -m database_convertion```
+All questions may be asked through email adresses, which are mentioned in the contributors accounts` info. 
 
-## Використання
+- ## Contributing
 
-+ Автоматичне розпізнавання дорожніх знаків для автомобілів.
-+ Система розпізнавання дорожніх знаків покликана попереджати водіїв про необхідність дотримання конкретних правил дорожнього руху. 
-+ Система визначає дорожні знаки і нагадує водієві дозволи для конкретної території.
-+ Система розпізнає дорожні знаки у час дня та вечора.
+At the moment it is not available to contribute to this project.
 
-## Ліцензія
+- ## Authors
 
-Поширюється за ліцензією MIT. Для отримання додаткової інформації дивіться `LICENSE`.
+Mykhailo Bondarenko
+
+Bohdan Mykhailiv
+
+Stefan-Yuriy Malyk
+
+Anastasiia Havryliv 
+
+Julia Maksymiuk
+
+- ## License
+
+MIT License
