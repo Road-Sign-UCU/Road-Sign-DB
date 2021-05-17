@@ -200,6 +200,8 @@ class Database:
                 plt.show()
 
         print(f"\n=> You can copy the generated analysis files from:\n{self.analysis_dirname}")
+        print(f"\n=> You can get the generated DATASET.csv file from:\n{self.dataset_filename}")
+        print(f"\n=> The generated images are in the 'images' forder at:\n{self.images_dirname}")
 
 
 def main(plt):
